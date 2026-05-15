@@ -1,6 +1,6 @@
 # Ex.No: 8  Implementation of Path finding using A* algorithm
-### DATE:                                                                            
-### REGISTER NUMBER : 
+### DATE: 15-05-2026                                                                           
+### REGISTER NUMBER : 212224240124
 ### AIM: 
 To write a program to create graph using waypoints and use A* algorithm to find path between source and destination.
 ### Algorithm:
@@ -21,7 +21,8 @@ To write a program to create graph using waypoints and use A* algorithm to find 
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Waypoint : MonoBehaviour {
+public class Waypoint : MonoBehaviour 
+{
     public List<Waypoint> neighbors = new List<Waypoint>();
 
     // Optional: Draw connections in the editor
@@ -34,21 +35,30 @@ public class Waypoint : MonoBehaviour {
         }
     }
 }
-**#2. WaypointGraph.cs**
+```
+**#2. WaypointManager.cs**
+```
+
 using UnityEngine;
 
-public class WaypointGraph : MonoBehaviour {
+public class WaypointManager : MonoBehaviour {
     public Waypoint[] allWaypoints;
 
     void Awake() {
         allWaypoints = FindObjectsOfType<Waypoint>();
     }
 }
+
+```
+
 **#3.Pathfinding.cs**
-using System.Collections.Generic;
+```
 using UnityEngine;
-public class Pathfinding : MonoBehaviour {
-    public static List<Waypoint> FindPath(Waypoint start, Waypoint goal) {
+using System.Collections.Generic;
+
+public class Pathfinding : MonoBehaviour
+{
+     public static List<Waypoint> FindPath(Waypoint start, Waypoint goal) {
         var openSet = new List<Waypoint>();
         var cameFrom = new Dictionary<Waypoint, Waypoint>();
         var gScore = new Dictionary<Waypoint, float>();
@@ -103,40 +113,63 @@ public class Pathfinding : MonoBehaviour {
         return path;
     }
 }
+```
 
-**#4.AICharacter.cs**
+
+**#4.Player.cs**
+```
+
 using UnityEngine;
 using System.Collections.Generic;
 
-public class AICharacter : MonoBehaviour {
+public class Player : MonoBehaviour
+{
     public Waypoint startWaypoint;
     public Waypoint goalWaypoint;
+
     public float speed = 3f;
 
     private List<Waypoint> path;
     private int currentIndex = 0;
 
-    void Start() {
+    void Start()
+    {
         path = Pathfinding.FindPath(startWaypoint, goalWaypoint);
     }
 
-    void Update() {
-        if (path == null || currentIndex >= path.Count) return;
+    void Update()
+    {
+        if (path == null || currentIndex >= path.Count)
+            return;
 
         Vector3 target = path[currentIndex].transform.position;
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, target) < 0.1f) {
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            target,
+            speed * Time.deltaTime
+        );
+
+        if (Vector3.Distance(transform.position, target) < 0.1f)
+        {
             currentIndex++;
         }
     }
 }
+```
 Check the following
 1. Waypoints placed in scene
 2. Neighbors set manually via Inspector
 3. WaypointGraph script on a manager
 4. AICharacter assigned a start and goal
 ### Output:
+
+<img width="1918" height="1137" alt="image" src="https://github.com/user-attachments/assets/384ce7fe-ddef-45a0-acbe-6a3a08a21bc3" />
+
+
+<img width="1918" height="1138" alt="image" src="https://github.com/user-attachments/assets/07e539c4-2bfd-4535-8f92-ca30ac860026" />
+
+
 
 
 
