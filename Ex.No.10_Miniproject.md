@@ -90,6 +90,10 @@ public class EnemyAI : MonoBehaviour
 ```
 ## Output:
 
+<img width="1919" height="1139" alt="Screenshot 2026-05-25 192153" src="https://github.com/user-attachments/assets/0d5f2a40-c0e8-4534-a54a-8c95a6b6364f" />
+
+
+<img width="1914" height="1138" alt="image" src="https://github.com/user-attachments/assets/2581a2db-3e26-4900-92d2-0f803e2953ad" />
 
 
 ## Result:
